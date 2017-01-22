@@ -4,6 +4,6 @@ open System.Runtime.Serialization
 open System.ServiceModel
 
 [<ServiceContract>]
-type IFundingService =
+type public IFundingService =
     [<OperationContract>]
-    abstract SetupPayment: request:SetupPaymentRequest -> Result Success SetupPaymentResponse
+    abstract member SetupPayment: request:SetupPaymentRequest -> SetupPaymentResponse

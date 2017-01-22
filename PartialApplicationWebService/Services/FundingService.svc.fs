@@ -6,10 +6,18 @@ open FSharpWcfService.Contracts
 type FundingService() =
     interface IFundingService with
         member x.SetupPayment request =
-            try Success
+            try 
+                let response = { Code = 0; Description = "" }
+                response
+//                let valid = new Validation(request)
+//                match valid with
+                    //| Success (SetupPaymentResponse response)
             with
-             | ex -> 
-                Failure (InvalidOperation request)
+             | ex -> { Code = 100; Description = ex.Message }
+
+type Validation(request : SetupPaymentRequest) = class 
+    member x.RequestValidation(request: SetupPaymentRequest -> Result<bool, string>) = true
+end
 
 //            match composite.BoolValue with
 //            | true -> composite.StringValue <- 
