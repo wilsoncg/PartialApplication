@@ -9,6 +9,11 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Services", "PartialApplicat
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Contracts", "PartialApplicationWebService\Contracts\Contracts.fsproj", "{2BA2E92E-A3FB-4999-9FA2-0F9CA749A76B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6ACD43E4-3C6B-4789-A40A-AA1A92E89304}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
