@@ -2,6 +2,7 @@
 
 open System
 open FSharpWcfService.Contracts
+//open FSharpWcfService.d
 
 type FundingService() =
     interface IFundingService with
@@ -9,15 +10,11 @@ type FundingService() =
             try 
                 let response = { Code = 0; Description = "" }
                 response
-//                let valid = new Validation(request)
-//                match valid with
-                    //| Success (SetupPaymentResponse response)
+//                let v = DataValidation.validation valFunc request
+//                valid
             with
              | ex -> { Code = 100; Description = ex.Message }
 
-type Validation(request : SetupPaymentRequest) = class 
-    member x.RequestValidation(request: SetupPaymentRequest -> Result<bool, string>) = true
-end
 
 //            match composite.BoolValue with
 //            | true -> composite.StringValue <- 

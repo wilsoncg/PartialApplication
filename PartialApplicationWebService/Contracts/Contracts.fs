@@ -13,7 +13,7 @@ open System.ServiceModel
 // Record type
 [<DataContract>]
 type SetupPaymentRequest = {
-    Amount : int 
+    Amount : decimal 
     TradingAccountCode : string 
     RequestSource : int 
 }
