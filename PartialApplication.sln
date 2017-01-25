@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "PartialApplicationWe
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Services", "PartialApplicationWebService\Services\Services.fsproj", "{88EB4774-51A2-4BF7-874C-009A0C3B3ADD}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Contracts", "PartialApplicationWebService\Contracts\Contracts.fsproj", "{2BA2E92E-A3FB-4999-9FA2-0F9CA749A76B}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Domain", "PartialApplicationWebService\Contracts\Domain.fsproj", "{2BA2E92E-A3FB-4999-9FA2-0F9CA749A76B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6ACD43E4-3C6B-4789-A40A-AA1A92E89304}"
 	ProjectSection(SolutionItems) = preProject

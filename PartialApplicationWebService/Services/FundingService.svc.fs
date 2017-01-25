@@ -2,18 +2,19 @@
 
 open System
 open FSharpWcfService.Contracts
-//open FSharpWcfService.d
+open FSharpWcfService.RequestValidation
 
-type FundingService() =
-    interface IFundingService with
-        member x.SetupPayment request =
-            try 
-                let response = { Code = 0; Description = "" }
-                response
-//                let v = DataValidation.validation valFunc request
-//                valid
-            with
-             | ex -> { Code = 100; Description = ex.Message }
+module AppLayer = 
+    type FundingService() =
+        interface IFundingService with
+            member x.SetupPayment request =
+                try 
+                    let v = amountIsValid request
+                    v
+                    let response = { Code = 0; Description = "" }
+                    response
+                with
+                 | ex -> { Code = 100; Description = ex.Message }
 
 
 //            match composite.BoolValue with

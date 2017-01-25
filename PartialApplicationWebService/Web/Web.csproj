@@ -79,9 +79,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.fsproj">
+    <ProjectReference Include="..\Contracts\Domain.fsproj">
       <Project>{2BA2E92E-A3FB-4999-9FA2-0F9CA749A76B}</Project>
-      <Name>Contracts</Name>
+      <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.fsproj">
       <Project>{88EB4774-51A2-4BF7-874C-009A0C3B3ADD}</Project>

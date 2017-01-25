@@ -33,3 +33,8 @@ type SetupPaymentResponse = {
 type Result<'a,'error> = 
     | Success of 'a
     | Failure of 'error
+
+[<ServiceContract>]
+type public IFundingService =
+    [<OperationContract>]
+    abstract member SetupPayment: request:SetupPaymentRequest -> SetupPaymentResponse

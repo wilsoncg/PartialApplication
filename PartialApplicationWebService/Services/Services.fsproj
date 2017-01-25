@@ -46,11 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FundingService.svc.fs" />
-    <Compile Include="Service.fs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.fsproj">
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\Contracts\Domain.fsproj">
+      <Name>Domain</Name>
       <Project>{2ba2e92e-a3fb-4999-9fa2-0f9ca749a76b}</Project>
       <Private>True</Private>
     </ProjectReference>
