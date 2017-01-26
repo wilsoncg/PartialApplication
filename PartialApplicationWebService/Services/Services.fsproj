@@ -48,6 +48,11 @@
     <Compile Include="FundingService.svc.fs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\LowLevelLang\LowLevelLang.fsproj">
+      <Name>LowLevelLang</Name>
+      <Project>{b0682601-303e-4bf5-8d48-926810e0449c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Contracts\Domain.fsproj">
       <Name>Domain</Name>
       <Project>{2ba2e92e-a3fb-4999-9fa2-0f9ca749a76b}</Project>

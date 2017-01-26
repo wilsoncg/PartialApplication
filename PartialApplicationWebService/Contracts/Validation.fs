@@ -6,6 +6,7 @@
 
 open System
 open FSharpWcfService.Contracts
+open FSharpWcfService.LowLevelLang
 
 type ClassValidation(request : SetupPaymentRequest) = class 
     member x.RequestValidation(request: SetupPaymentRequest -> Result<bool, string>) = 
@@ -19,3 +20,9 @@ module RequestValidation =
         match request with
          | r when r.Amount <= 0m -> Success true
          | _ -> Failure "Amount invalid"
+    let defaultSource request =
+        { request with RequestSource = if request.RequestSource = 0 then 1 else request.RequestSource }
+
+    let checks =
+        amountIsValid 
+        >=> Common.switch defaultSource
