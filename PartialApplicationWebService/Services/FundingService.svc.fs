@@ -3,24 +3,21 @@
 open System
 open FSharpWcfService.Contracts
 open FSharpWcfService.RequestValidation
+open FSharpWcfService.LowLevelLang
+open FSharpWcfService.LowLevelLang.Common
 
 module AppLayer = 
     type FundingService() =
         interface IFundingService with
             member x.SetupPayment request =
-                try 
-                    let v = checks
-                    v
-                    let response = { Code = 0; Description = "" }
-                    response
-                with
-                 | ex -> { Code = 100; Description = ex.Message }
+                    let v = inputChecks
+                    match v with
+                     | Success -> { Code = 1; Description = "" }
+                     | Failure -> { Code = -1; Description = "" }           
 
-
-//            match composite.BoolValue with
-//            | true -> composite.StringValue <- 
-//                          sprintf "%A%A" composite.StringValue "Suffix"
-//            | _ -> "do nothing" |> ignore
+//try
+//with
+//    | ex -> { Code = 100; Description = ex.Message }
 
 //public SetupPaymentResponse SetupPayment(SetupPaymentRequest request)
 //        {
