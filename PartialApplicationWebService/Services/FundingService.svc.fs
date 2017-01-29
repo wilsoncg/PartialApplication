@@ -9,7 +9,7 @@ module AppLayer =
         interface IFundingService with
             member x.SetupPayment request =
                 try 
-                    let v = amountIsValid request
+                    let v = checks
                     v
                     let response = { Code = 0; Description = "" }
                     response

@@ -6,9 +6,9 @@
 // https://blogs.msdn.microsoft.com/dotnet/2016/07/25/a-peek-into-f-4-1/
 // https://github.com/fsharp/fslang-design/issues/49
 //
-type Result<'a,'error> = 
-    | Success of 'a
-    | Failure of 'error
+type Result<'TSuccess,'TError> = 
+    | Success of 'TSuccess
+    | Failure of 'TError
 
 module Common =
     let switch f x =
@@ -18,6 +18,9 @@ module Common =
         match twoTrackInput with
         | Success s -> switchFunction s
         | Failure f -> Failure f
+
+    let (>>==) twoTrackInput switchFunction =
+        bind switchFunction twoTrackInput
 
     let (>=>) switch1 switch2 = 
         switch1 >> (bind switch2)
