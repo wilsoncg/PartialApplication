@@ -8,18 +8,18 @@ open FSharpWcfService.RequestValidation
 open FSharpWcfService.LowLevelLang
 open FSharpWcfService.LowLevelLang.Common
 
-module AppLayer = 
-    [<ServiceBehavior>]
-    type FundingService() =
-        interface IFundingService with
-            member x.SetupPayment request =
-                let isValid = inputChecks request
-                let toMap r = 
-                    match r with
-                    | Success _ -> { Code = 1; Description = "" }
-                    | Failure f -> { Code = -1; Description = f }           
-                let result = toMap isValid
-                result
+[<ServiceBehavior>]
+type FundingService() =
+    interface IFundingService with
+        member x.SetupPayment request =
+            let isValid = inputChecks request
+            let toMap r = 
+                match r with
+                | Success _ -> { Code = 1; Description = "" }
+                | Failure f -> { Code = -1; Description = f }           
+            let result = toMap isValid
+            result
+
 //try
 //with
 //    | ex -> { Code = 100; Description = ex.Message }

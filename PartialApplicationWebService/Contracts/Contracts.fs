@@ -10,18 +10,21 @@ open System.ServiceModel
 //    { [<DataMember>] mutable BoolValue : bool 
 //      [<DataMember>] mutable StringValue : string }
 
+// Not sure about mutable keyword, seems its the only way of F#
+// providing property getters and setters which WCF needs
+
 // Record type
 [<DataContract>]
 type SetupPaymentRequest = {
-    Amount : decimal 
-    TradingAccountCode : string 
-    RequestSource : int 
+    [<DataMember>] mutable Amount : decimal 
+    [<DataMember>] mutable TradingAccountCode : string 
+    [<DataMember>] mutable RequestSource : int 
 }
 
 [<DataContract>]
 type SetupPaymentResponse = {
-    Code : int
-    Description : string
+    [<DataMember>] mutable Code : int
+    [<DataMember>] mutable Description : string
 }
 
 [<ServiceContract()>]

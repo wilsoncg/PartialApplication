@@ -19,7 +19,7 @@ open FSharpWcfService.LowLevelLang.Common
 module RequestValidation =
     let amountIsValid request = 
         match request with
-         | r when r.Amount <= 0m -> Success request
+         | r when r.Amount > 0m -> Success request
          | _ -> Failure "Amount invalid"
 
     // valid (fun r -> r.Amount <= 0m)
