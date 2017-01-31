@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="FSharpWcfService.FundingService" CodeBehind="FundingService.svc.fs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="FSharpWcfService.AppLayer.FundingService" CodeBehind="FundingService.svc.fs" %>

@@ -22,9 +22,15 @@ module RequestValidation =
          | r when r.Amount <= 0m -> Success request
          | _ -> Failure "Amount invalid"
 
+    // valid (fun r -> r.Amount <= 0m)
+    let valid request f =
+        match request with
+        | r when f r -> Success request
+        | _ -> Failure "invalid"
+
     let assignDefaultSource request =
         { request with RequestSource = if request.RequestSource = 0 then 1 else request.RequestSource }
 
-    let inputChecks r =
-        r amountIsValid 
-        //>=> switch assignDefaultSource
+    let inputChecks =
+        amountIsValid
+        >=> switch assignDefaultSource

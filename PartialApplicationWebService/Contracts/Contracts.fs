@@ -24,9 +24,7 @@ type SetupPaymentResponse = {
     Description : string
 }
 
-
-
-[<ServiceContract>]
-type public IFundingService =
+[<ServiceContract()>]
+type IFundingService =
     [<OperationContract>]
-    abstract member SetupPayment: request:SetupPaymentRequest -> SetupPaymentResponse
+    abstract SetupPayment : request:SetupPaymentRequest -> SetupPaymentResponse
