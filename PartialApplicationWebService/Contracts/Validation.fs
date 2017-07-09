@@ -20,7 +20,7 @@ module RequestValidation =
     let amountIsValid request = 
         match request with
          | r when r.Amount > 0m -> Success request
-         | _ -> Failure "Amount invalid"
+         | _ -> Failure "Amount must be positive"
 
     // valid (fun r -> r.Amount <= 0m)
     let valid request f =

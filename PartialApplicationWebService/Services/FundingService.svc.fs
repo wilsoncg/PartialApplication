@@ -17,8 +17,21 @@ type FundingService() =
                 match r with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }           
-            let result = toMap isValid
-            result
+            toMap isValid
+
+//let changeName observer customer newName = 
+//    let newCustomer = {customer with name=newName}
+//    observer newCustomer    // call the observer with the new customer
+//    newCustomer             // return the new customer
+
+//1. do something to make a result value
+//2. call the observer with the result value
+//3. return the result value
+
+//let hook2 observer f param1 param2 = 
+//    let y = f param1 param2 // do something to make a result value
+//    observer y              // call the observer with the result value
+//    y                       // return the result value
 
 //try
 //with
