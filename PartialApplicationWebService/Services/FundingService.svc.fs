@@ -17,8 +17,7 @@ type FundingService() =
                 match r with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }           
-            let result = toMap isValid
-            result
+            toMap (inputChecks request)
 
 //try
 //with

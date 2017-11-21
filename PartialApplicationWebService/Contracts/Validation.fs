@@ -17,20 +17,27 @@ open FSharpWcfService.LowLevelLang.Common
 
 // much better
 module RequestValidation =
-    let amountIsValid request = 
+    let amountIsPositive request = 
         match request with
          | r when r.Amount > 0m -> Success request
-         | _ -> Failure "Amount invalid"
+         | _ -> Failure "Amount must be positive"
 
-    // valid (fun r -> r.Amount <= 0m)
-    let valid request f =
+    let tradingAccountIsValid request =
         match request with
-        | r when f r -> Success request
-        | _ -> Failure "invalid"
+        | r when not (System.String.IsNullOrEmpty r.TradingAccountCode) -> Success request
+        | _ -> Failure "TradingAccount must be specified"
 
     let assignDefaultSource request =
         { request with RequestSource = if request.RequestSource = 0 then 1 else request.RequestSource }
 
     let inputChecks =
-        amountIsValid
+        amountIsPositive
+        >> bind tradingAccountIsValid
         >=> switch assignDefaultSource
+
+//Rule<SetupPaymentRequest> TradingAccountExistsInSystem();
+//Rule<SetupPaymentRequest> MaxCardsLimitIsNotExceeded();
+//Rule<SetupPaymentRequest> IsDepositAmountBetweenSystemMinAndMax();
+//Rule<SetupPaymentRequest> DoesSystemHaveCorrectSettingsForSetupPayment();
+//Rule<SetupPaymentRequest> IsDepositRestrictedForCustomer();
+//Rule<SetupPaymentRequest> IsCustomerAccountTypeAllowedToFund();

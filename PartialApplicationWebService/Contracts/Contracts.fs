@@ -18,7 +18,9 @@ open System.ServiceModel
 type SetupPaymentRequest = {
     [<DataMember>] mutable Amount : decimal 
     [<DataMember>] mutable TradingAccountCode : string 
-    [<DataMember>] mutable RequestSource : int 
+    [<DataMember>] mutable RequestSource : int     
+    [<DataMember>] mutable Username : string
+    [<DataMember>] mutable LegalPartyId : int
 }
 
 [<DataContract>]
