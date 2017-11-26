@@ -21,6 +21,15 @@ type FundingService() =
             let result = { Code = 1; Description = "" }
             result
 
+//let changeName observer customer newName = 
+//    let newCustomer = {customer with name=newName}
+//    observer newCustomer    // call the observer with the new customer
+//    newCustomer             // return the new customer
+
+//1. do something to make a result value
+//2. call the observer with the result value
+//3. return the result value
+
 //try
 //with
 //    | ex -> { Code = 100; Description = ex.Message }
