@@ -12,12 +12,14 @@ open FSharpWcfService.LowLevelLang.Common
 type FundingService() =
     interface IFundingService with
         member x.SetupPayment request =
-            let isValid = inputChecks request
             let toMap r = 
                 match r with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }           
             toMap (inputChecks request)
+        member x.MakePayment request =
+            let result = { Code = 1; Description = "" }
+            result
 
 //try
 //with
