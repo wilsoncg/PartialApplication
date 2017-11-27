@@ -24,14 +24,19 @@ type SetupPaymentRequest = {
 }
 
 [<DataContract>]
-type SetupPaymentResponse = {
-    [<DataMember>] mutable Code : int
-    [<DataMember>] mutable Description : string
+type MakePaymentRequest = {
+    [<DataMember>] mutable ServiceProviderReference : string 
 }
 
 [<DataContract>]
-type MakePaymentRequest = {
-    [<DataMember>] mutable ServiceProviderReference : string 
+type Request = 
+    | SetupPaymentRequest
+    | MakePaymentRequest
+
+[<DataContract>]
+type SetupPaymentResponse = {
+    [<DataMember>] mutable Code : int
+    [<DataMember>] mutable Description : string
 }
 
 [<DataContract>]
@@ -43,6 +48,6 @@ type MakePaymentResponse = {
 [<ServiceContract()>]
 type IFundingService =
     [<OperationContract>]
-    abstract SetupPayment : request:SetupPaymentRequest -> SetupPaymentResponse
+    abstract member SetupPayment : SetupPaymentRequest -> SetupPaymentResponse
     [<OperationContract>]
-    abstract MakePayment : request:MakePaymentRequest -> MakePaymentResponse
+    abstract member MakePayment : MakePaymentRequest -> MakePaymentResponse

@@ -11,15 +11,18 @@ open FSharpWcfService.LowLevelLang.Common
 [<ServiceBehavior>]
 type FundingService() =
     interface IFundingService with
-        member x.SetupPayment request =
-            let toMap r = 
-                match r with
+        member this.SetupPayment request =
+            let result = inputChecks request 
+            match result with
                 | Success _ -> { Code = 1; Description = "" }
-                | Failure f -> { Code = -1; Description = f }           
-            toMap (inputChecks request)
-        member x.MakePayment request =
-            let result = { Code = 1; Description = "" }
-            result
+                | Failure f -> { Code = -1; Description = f }
+        
+        member this.MakePayment request =
+            let result = inputChecks request
+            match result with
+                | Success _ -> { Code = 1; Description = "" }
+                | Failure f -> { Code = -1; Description = f }
+        //    result
 
 //let changeName observer customer newName = 
 //    let newCustomer = {customer with name=newName}
