@@ -8,12 +8,12 @@ open FSharpWcfService.LowLevelLang.Common
 module RequestValidation =
     let amountIsPositive request = 
         match request with
-         | r when r.Amount > 0m -> Success request
-         | _ -> Failure "Amount must be positive"
+        | r when r.Amount > 0m -> Success request
+        | _ -> Failure "Amount must be positive"
 
     let tradingAccountIsValid request =
         match request with
-        | r when not (System.String.IsNullOrEmpty r.TradingAccountCode) -> Success request
+        | r when not (String.IsNullOrEmpty r.TradingAccountCode) -> Success request
         | _ -> Failure "TradingAccount must be specified"
 
     let assignDefaultSource request =
@@ -23,17 +23,16 @@ module RequestValidation =
 
     let providerReferenceIsValid request =
         match request with
-        | r when not (System.String.IsNullOrEmpty r.ServiceProviderReference) -> Success request
+        | r when not (String.IsNullOrEmpty r.ServiceProviderReference) -> Success request
         | _ -> Failure "ServiceProviderReference must be provided"
 
-    let inputChecks r:Request =
-     match r with
-     | SetupPaymentRequest ->
+    let setupChecks =
         amountIsPositive
         >> bind tradingAccountIsValid
         >=> switch assignDefaultSource
-     | MakePaymentRequest -> Success r
-     //| MakePaymentRequest -> providerReferenceIsValid
+
+    let makePaymentChecks =
+        providerReferenceIsValid
 
 // how not to do:
 // using methods and dotted notation results in having to use lambdas

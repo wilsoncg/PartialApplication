@@ -12,13 +12,13 @@ open FSharpWcfService.LowLevelLang.Common
 type FundingService() =
     interface IFundingService with
         member this.SetupPayment request =
-            let result = inputChecks request 
+            let result = setupChecks request 
             match result with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }
         
         member this.MakePayment request =
-            let result = inputChecks request
+            let result = makePaymentChecks request
             match result with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }

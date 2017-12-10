@@ -29,11 +29,6 @@ type MakePaymentRequest = {
 }
 
 [<DataContract>]
-type Request = 
-    | SetupPaymentRequest
-    | MakePaymentRequest
-
-[<DataContract>]
 type SetupPaymentResponse = {
     [<DataMember>] mutable Code : int
     [<DataMember>] mutable Description : string
