@@ -11,10 +11,15 @@ module RequestValidation =
         | r when r.Amount > 0m -> Success request
         | _ -> Failure "Amount must be positive"
 
-    let tradingAccountIsValid request =
+    let tradingAccountCodeProvided request =
         match request with
         | r when not (String.IsNullOrEmpty r.TradingAccountCode) -> Success request
         | _ -> Failure "TradingAccount must be specified"
+    
+    let usernameProvided request =
+        match request with
+        | r when not (String.IsNullOrEmpty r.Username) -> Success request
+        | _ -> Failure "Username must be specified"
 
     let assignDefaultSource request =
         { request with RequestSource = 
@@ -28,12 +33,13 @@ module RequestValidation =
 
     let setupChecks =
         amountIsPositive
-        >> bind tradingAccountIsValid
+        >> bind tradingAccountCodeProvided
+        >> bind usernameProvided
         >=> switch assignDefaultSource
 
     let makePaymentChecks =
         providerReferenceIsValid
-
+        
 // how not to do:
 // using methods and dotted notation results in having to use lambdas
 // type inference doesn't work

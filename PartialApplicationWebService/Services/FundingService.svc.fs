@@ -13,6 +13,7 @@ type FundingService() =
     interface IFundingService with
         member this.SetupPayment request =
             let result = setupChecks request 
+            let ta = SqlGateway.getTradingAccount request.TradingAccountCode
             match result with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }
@@ -22,7 +23,6 @@ type FundingService() =
             match result with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }
-        //    result
 
 //let changeName observer customer newName = 
 //    let newCustomer = {customer with name=newName}

@@ -40,9 +40,11 @@ type MakePaymentResponse = {
     [<DataMember>] mutable Description : string
 }
 
-[<ServiceContract()>]
+// Request parameters need to be named, otherwise F# service host construction will complain 
+// with error: "All parameter names used in operations that make up a service contract must not be null"
+[<ServiceContract>]
 type IFundingService =
     [<OperationContract>]
-    abstract member SetupPayment : SetupPaymentRequest -> SetupPaymentResponse
+    abstract member SetupPayment : request:SetupPaymentRequest -> SetupPaymentResponse
     [<OperationContract>]
-    abstract member MakePayment : MakePaymentRequest -> MakePaymentResponse
+    abstract member MakePayment : request:MakePaymentRequest -> MakePaymentResponse

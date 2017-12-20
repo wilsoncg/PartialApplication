@@ -24,3 +24,7 @@ module Common =
 
     let (>=>) switch1 switch2 = 
         switch1 >> (bind switch2)
+    
+    type EitherBuilder() =
+        member this.Bind(x, f) = bind f x
+        member this.ReturnFrom x = x

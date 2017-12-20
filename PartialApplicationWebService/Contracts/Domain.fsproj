@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Contracts.fs" />
     <Compile Include="Validation.fs" />
+    <Compile Include="Model.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LowLevelLang\LowLevelLang.fsproj">

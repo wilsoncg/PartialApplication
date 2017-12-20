@@ -41,14 +41,21 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FundingService.svc.fs" />
+    <Compile Include="BusinessValidation.fs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Data.fsproj">
+      <Name>Data</Name>
+      <Project>{5bea5259-6c52-40f1-8202-d3ed3671ffb3}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\LowLevelLang\LowLevelLang.fsproj">
       <Name>LowLevelLang</Name>
       <Project>{b0682601-303e-4bf5-8d48-926810e0449c}</Project>
