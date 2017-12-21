@@ -6,25 +6,28 @@ GO
 USE [master];
 GO
 
-ALTER DATABASE FundingData
-SET SINGLE_USER WITH
-ROLLBACK AFTER 5 --this will give your current connections 5 seconds to complete
+IF EXISTS (SELECT * FROM sys.databases WHERE name = 'PartialApplicationData')
+BEGIN
+	ALTER DATABASE PartialApplicationData
+	SET SINGLE_USER WITH
+	ROLLBACK AFTER 5 --this will give your current connections 5 seconds to complete
+END
 
-IF EXISTS (SELECT * FROM sys.databases WHERE name = 'FundingData')
-  DROP DATABASE FundingData;
+IF EXISTS (SELECT * FROM sys.databases WHERE name = 'PartialApplicationData')
+  DROP DATABASE PartialApplicationData;
 GO
 
--- Create the FundingData database.
-CREATE DATABASE FundingData;
+-- Create the PartialApplicationData database.
+CREATE DATABASE PartialApplicationData;
 GO
 
 -- Specify a simple recovery model 
 -- to keep the log growth to a minimum.
-ALTER DATABASE FundingData 
+ALTER DATABASE PartialApplicationData 
 SET RECOVERY SIMPLE;
 GO
 
-USE FundingData;
+USE PartialApplicationData;
 GO
 
 -- Create the [TradingAccount] table.

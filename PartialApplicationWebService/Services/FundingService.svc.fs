@@ -1,20 +1,25 @@
 ﻿namespace FSharpWcfService
 
 open System
+open System.Configuration
 open System.Runtime.Serialization
 open System.ServiceModel
 open FSharpWcfService.Contracts
 open FSharpWcfService.RequestValidation
 open FSharpWcfService.LowLevelLang
+open SqlGateway
+open FSharpSettings
 open FSharpWcfService.LowLevelLang.Common
 
 [<ServiceBehavior>]
-type FundingService() =
-    interface IFundingService with
-        member this.SetupPayment request =
-            let result = setupChecks request 
-            let ta = SqlGateway.getTradingAccount request.TradingAccountCode
-            match result with
+type FundingService() = 
+    interface IFundingService with        
+        member this.SetupPayment request = 
+            let x = either {
+             let r = setupChecks request
+             let ta = getTradingAccount (new Settings()).Database request.TradingAccountCode
+             return! r } 
+            match x with
                 | Success _ -> { Code = 1; Description = "" }
                 | Failure f -> { Code = -1; Description = f }
         

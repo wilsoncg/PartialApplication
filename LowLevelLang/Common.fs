@@ -18,6 +18,10 @@ module Common =
         match twoTrackInput with
         | Success s -> switchFunction s
         | Failure f -> Failure f
+    let map f x =
+        match x with
+        | Success s -> Success(f s)
+        | Failure f -> Failure f
 
     let (>>==) twoTrackInput switchFunction =
         bind switchFunction twoTrackInput
@@ -28,3 +32,6 @@ module Common =
     type EitherBuilder() =
         member this.Bind(x, f) = bind f x
         member this.ReturnFrom x = x
+        member this.Zero(x) = Failure x
+
+    let either = EitherBuilder()

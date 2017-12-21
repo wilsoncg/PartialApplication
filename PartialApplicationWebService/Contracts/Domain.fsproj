@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts.fs" />
-    <Compile Include="Validation.fs" />
+    <Compile Include="RequestValidation.fs" />
     <Compile Include="Model.fs" />
   </ItemGroup>
   <ItemGroup>
